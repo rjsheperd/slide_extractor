@@ -16,7 +16,7 @@ def get_basic(img):
   return img
   
 def deduplicate_images(tmpdir):
-  frames = glob(f"{tmpdir}/*.jpg")
+  frames = sorted(glob(f"{tmpdir}/*.jpg"))
   images = []
   for i in range(len(frames)):
     img = cv2.imread(frames[i])
@@ -36,7 +36,7 @@ def deduplicate_images(tmpdir):
       continue
 
 def convert_to_pdf(video, tmpdir):
-  frames = glob(f"{tmpdir}/*.jpg")
+  frames = sorted(glob(f"{tmpdir}/*.jpg"))
   print(f"Writing: {frames}")
   with open("%s.pdf" % (video).split('.')[0], "wb") as f:
     f.write(img2pdf.convert(frames))
