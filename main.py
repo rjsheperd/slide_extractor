@@ -37,8 +37,9 @@ def deduplicate_images(tmpdir):
 
 def convert_to_pdf(video, tmpdir):
   frames = sorted(glob(f"{tmpdir}/*.jpg"))
-  print(f"Writing: {frames}")
-  with open("%s.pdf" % (video).split('.')[0], "wb") as f:
+  pdf_file = "%s.pdf" % (video).split('.')[0]
+  with open(pdf_file, "wb") as f:
+    print(f"Writing: {pdf_file}")
     f.write(img2pdf.convert(frames))
   
 def split_video(video, tmpdir):
